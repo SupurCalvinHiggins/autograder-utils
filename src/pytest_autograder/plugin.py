@@ -6,7 +6,7 @@ from pathlib import Path
 weight = pytest.mark.weight
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def submission_path(request):
     return request.config.option.submission_path
 
@@ -27,7 +27,7 @@ def pytest_addoption(parser):
     group.addoption(
         "--output-path",
         action="store",
-        default="output.json",
+        default="/dev/null",
         type=Path,
         help="Autograder output path.",
         dest="output_path",
